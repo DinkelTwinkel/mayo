@@ -27,6 +27,7 @@ module.exports = {
 
         try {
         newBannerLink.save();
+        interaction.guild.setBanner(link);
         interaction.reply('Successfully added new banner image!');
         }
         catch (err){
