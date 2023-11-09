@@ -85,7 +85,7 @@ client.once(Events.ClientReady, async c => {
         console.log ('found result');
         result.forEach (async (r) => {
           // turn user into a ghost.
-          (await friendshipGuild.members.fetch(r.userId)).roles.set(['1172197535922798644']);
+          (await friendshipGuild.members.fetch(r.userId)).roles.set(['1172197535922798644']).catch((err) => {});
 
           const deletCustomColour = await Colour.findOne({ userId: r.userId });
           if (deletCustomColour) {
@@ -165,7 +165,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
   // Check if the user joined a voice channel
   if (!oldState.channel && newState.channel && newState.channel.id === '1172195956985446460') {
     // Disconnect the user immediately
-    newState.member.roles.set(['1171797289581424661']);
+    newState.member.roles.set(['1171797289581424661']).catch((err) => {});
     newState.member.voice.disconnect();
     console.log(`User ${newState.member.user.tag} joined a voice channel and was immediately disconnected.`);
   }
