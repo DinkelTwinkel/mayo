@@ -26,7 +26,7 @@ client.once(Events.ClientReady, async c => {
     client.user.setPresence( { status: "away" });
     client.user.setActivity('running away from denil', { type: ActivityType.Playing });
 
-    const friendshipGuild = client.guilds.cache.get('1171795345223716964');
+    const friendshipGuild = await client.guilds.fetch('1171795345223716964');
     const randomimage = await Banner.aggregate([
         {
             $sample: {
@@ -34,8 +34,8 @@ client.once(Events.ClientReady, async c => {
             }
         }
     ])
-    console.log (randomimage);
-    friendshipGuild.setBanner(randomimage.imageLink);
+    console.log (randomimage[0].imageLink);
+    await friendshipGuild.setBanner(randomimage[0].imageLink);
 
     setInterval(() => {
 
@@ -55,7 +55,7 @@ async function setRandomImage(friendshipGuild) {
             }
         ])
         console.log (randomimage);
-        friendshipGuild.setBanner(randomimage.imageLink);
+        friendshipGuild.setBanner(randomimage[0].imageLink);
 }
 
 // new user join auto role
