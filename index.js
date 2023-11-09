@@ -166,6 +166,17 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
   if (!oldState.channel && newState.channel && newState.channel.id === '1172195956985446460') {
     // Disconnect the user immediately
     newState.member.roles.set(['1171797289581424661']).catch((err) => {});
+
+    // reset lurk time.
+    const now = new Date();
+    // Add 24 hours to the current date and time
+    now.setUTCHours(now.getUTCHours() + lurkHour);
+    // Get the UTC milliseconds for the date 7 days from now
+    const utcMilliseconds = now.getTime();
+    const checkLurk = await Lurker.findOne ({ userId: message.member.user.id });
+    checkLurk.lurkTime = utcMilliseconds;
+    await checkLurk.save();
+
     newState.member.voice.disconnect();
     console.log(`User ${newState.member.user.tag} joined a voice channel and was immediately disconnected.`);
   }
