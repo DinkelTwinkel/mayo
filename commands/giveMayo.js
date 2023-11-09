@@ -37,7 +37,9 @@ module.exports = {
             interaction.reply('*mayo was too full and emptied it\'s stomach!*');
             interaction.channel.send(`Congratulations ${interaction.member}, you have gained ${targetPouch.points} mayo!`);
             findPouch.points += targetPouch.points;
+            await findPouch.save();
             targetPouch.points = 0;
+            await targetPouch.save();
             
             client.user.setActivity(`JACKPOT: ${targetPouch.points} MAYO`, { type: ActivityType.Watching });
           }
@@ -45,7 +47,9 @@ module.exports = {
             // no win moan
             // interaction.channel.send('');
             findPouch.points -= amountToGive;
+            await findPouch.save();
             targetPouch.points += amountToGive;
+            await targetPouch.save();
 
             client.user.setActivity(`JACKPOT: ${targetPouch.points} MAYO`, { type: ActivityType.Watching });
   
@@ -56,14 +60,16 @@ module.exports = {
         else {
 
           findPouch.points -= amountToGive;
+          await findPouch.save();
           targetPouch.points += amountToGive;
+
 
           interaction.reply (`${amountToGive} mayo transferred to ${interaction.options.getUser('target')}`);
           
         }
 
-        await findPouch.save();
-        await targetPouch.save();
+
+
 
         // mayo lottery
 
