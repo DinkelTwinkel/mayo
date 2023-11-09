@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, ActivityType } = require('discord.js');
 const Point = require('../models/points');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
 				.setDescription('amount of mayo to give!')
         .setRequired(true)),
 
-    async execute(interaction) {
+    async execute(interaction, client) {
 
       // ephemeral tell user points
 
@@ -26,12 +26,46 @@ module.exports = {
       const amountToGive = interaction.options.getInteger('amount');
 
       if (findPouch.points >= amountToGive) {
-        findPouch.points -= amountToGive;
-        targetPouch.points += amountToGive;
+
+        if (interaction.options.getUser('target').id === '1171936614965067866'){
+          //detected money given to bot.
+          // calculate win chance.
+          const total = amountToGive + targetPouch.points;
+          const chance = amountToGive / total;
+          if (Math.random() < chance) {
+            // win
+            interaction.reply('*mayo was too full and emptied it\'s stomach!*');
+            interaction.channel.send(`Congratulations ${interaction.member}, you have gained ${targetPouch.points} mayo!`);
+            findPouch.points += targetPouch.points;
+            targetPouch.points = 0;
+            
+            client.user.setActivity(`JACKPOT: ${targetPouch.points} MAYO`, { type: ActivityType.Watching });
+          }
+          else {
+            // no win moan
+            // interaction.channel.send('');
+            findPouch.points -= amountToGive;
+            targetPouch.points += amountToGive;
+
+            client.user.setActivity(`JACKPOT: ${targetPouch.points} MAYO`, { type: ActivityType.Watching });
+  
+            interaction.reply ('*MOAN*');
+          }
+
+        }
+        else {
+
+          findPouch.points -= amountToGive;
+          targetPouch.points += amountToGive;
+
+          interaction.reply (`${amountToGive} mayo transferred to ${interaction.options.getUser('target')}`);
+          
+        }
 
         await findPouch.save();
         await targetPouch.save();
-        interaction.reply (`${amountToGive} mayo transferred to ${interaction.options.getUser('target')}`);
+
+        // mayo lottery
 
       }
       else {

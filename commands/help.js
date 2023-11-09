@@ -33,7 +33,7 @@ module.exports = {
           },
           {
             name: "/givemayo",
-            value: "(gives another user your mayo)",
+            value: "(gives another user your mayo)\n `Feed mayo to the mayo bot for a chance to win the jackpot!`",
             inline: false
           },
           {
@@ -48,7 +48,7 @@ module.exports = {
           },
           {
             name: "/colour (cost: 15 mayo)",
-            value: "(give yourself a custom colour! requires a Hex Colour Code! \nThis might help: https://g.co/kgs/YjmHzd )",
+            value: "(give yourself a custom colour! requires a Hex Colour Code! ) \nThis might help: https://g.co/kgs/YjmHzd",
             inline: false
           },
         )
@@ -56,7 +56,7 @@ module.exports = {
           text: `You currently have ${findPouch.points} Mayo 🤍`,
         });
 
-      interaction.reply ({ embeds: [mayo] , ephemeral: true });
+      interaction.reply ({ embeds: [mayo] , ephemeral: false });
 
     },
   };

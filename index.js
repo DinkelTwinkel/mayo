@@ -20,13 +20,16 @@ const registerCommands = require ('./registerCommands');
 const Banner = require('./models/bannerimages');
 const Point = require('./models/points');
 const Colour = require('./models/customColour');
+const Fortune = require('./models/dailyFortune');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
-    client.user.setActivity('running away from denil', { type: ActivityType.Playing });
+
+    let mayoPoints = await Point.findOne ({ userId: '1171936614965067866' });
+    client.user.setActivity(`JACKPOT: ${mayoPoints.points} MAYO`, { type: ActivityType.Watching });
 
     const friendshipGuild = await client.guilds.fetch('1171795345223716964');
     const mushiesRole = friendshipGuild.roles.cache.get('1171796100223615056');
@@ -78,6 +81,7 @@ client.on(Events.GuildMemberRemove, async (member) => {
     await member.guild.roles.cache.get(deletCustomColour.roleID).delete();
     await Colour.deleteOne ({ userId: member.user.id });
   }
+  await Fortune.deleteOne({ userId: member.user.id });
 
 });
 
@@ -86,7 +90,6 @@ client.on(Events.GuildMemberRemove, async (member) => {
 //Regular Secret Commands 
 //Check if user is also in the hell mart discord. Only work if so.
 client.on(Events.MessageCreate, async (message) => {
-
 
     if (message.content.startsWith('!')) {
         console.log('commandDetected');
@@ -115,6 +118,10 @@ client.on(Events.MessageCreate, async (message) => {
 client.on(Events.MessageCreate, async (message) => {
 
   let userPouch = await Point.findOne ({ userId: message.member.id });
+
+  if (message.author.bot) {
+    client.user.setActivity(`JACKPOT: ${userPouch.points} MAYO`, { type: ActivityType.Watching });
+  }
 
   if (!userPouch) {
     userPouch = new Point ({
