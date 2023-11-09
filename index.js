@@ -77,6 +77,7 @@ async function setRandomImage(friendshipGuild) {
 client.on(Events.GuildMemberAdd, async (member) => {
 
   member.roles.add('1171797289581424661')
+  member.guild.systemChannel.send(`Hello ${member}, I am MAY-O, to become mayo try **/mayo**`);
 
 });
 
