@@ -49,7 +49,7 @@ module.exports = {
 
             client.user.setActivity(`JACKPOT: ${targetPouch.points} MAYO`, { type: ActivityType.Watching });
   
-            interaction.reply ('*MOAN*');
+            interaction.reply (`***MOAN*** - [You didn't win and the jackpot has increased! New jackpot: ${targetPouch.points} MAYO ]`);
           }
 
         }
