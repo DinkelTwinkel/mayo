@@ -3,7 +3,7 @@ const Point = require('../models/points');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('givemayo')
+    .setName('give')
     .setDescription('give someone your mayo!')
     .addUserOption(option =>
 			option

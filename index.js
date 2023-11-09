@@ -51,6 +51,13 @@ client.once(Events.ClientReady, async c => {
 
     }, 30 * 60 * 1000);
 
+    // remove mayo-ed from all users.
+    const members = await friendshipGuild.members.fetch();
+    
+    members.forEach((member) => {
+      if (member.roles.cache.get('1172041699783098452')) member.roles.remove ('1172041699783098452');
+    })
+
 });
 
 async function setRandomImage(friendshipGuild) {

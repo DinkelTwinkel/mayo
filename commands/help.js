@@ -33,7 +33,7 @@ module.exports = {
             inline: false
           },
           {
-            name: "/givemayo",
+            name: "/give",
             value: "(gives another user your mayo)\n ```Feed mayobot for a chance to win jackpot!" + `\nCurrent Jackpot: ${jackPot.points} MAYO` + '```',
             inline: false
           },
@@ -50,6 +50,11 @@ module.exports = {
           {
             name: "/colour (cost: 15 mayo)",
             value: "(give yourself a custom colour! requires a Hex Colour Code! ) \nThis might help: https://g.co/kgs/YjmHzd",
+            inline: false
+          },
+          {
+            name: "/throw (1 mayo = 1 second)",
+            value: "(cover another user in mayo!)",
             inline: false
           },
         )
