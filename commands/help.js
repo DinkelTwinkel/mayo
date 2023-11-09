@@ -11,6 +11,7 @@ module.exports = {
       // ephemeral tell user points
 
       const findPouch = await Point.findOne({ userId: interaction.member.id });
+      const jackPot = await Point.findOne({ userId: '1171936614965067866' });
 
       const mayo = new EmbedBuilder()
         // .setAuthor({
@@ -33,7 +34,7 @@ module.exports = {
           },
           {
             name: "/givemayo",
-            value: "(gives another user your mayo)\n `Feed mayo to the mayo bot for a chance to win the jackpot!`",
+            value: "(gives another user your mayo)\n ```Feed mayobot for a chance to win jackpot!" + `\nCurrent Jackpot: ${jackPot.points} MAYO` + '```',
             inline: false
           },
           {

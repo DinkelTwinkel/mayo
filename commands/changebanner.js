@@ -26,7 +26,7 @@ module.exports = {
 
         if (link.startsWith('https://cdn.discordapp.com/attachments/')) {
 
-          const imageExtensions = /\.(png|jpeg|jpg|jpg|webp)/i;
+          const imageExtensions = /\.(png|jpeg|jpg|jpg|webp|gif)/i;
           if (imageExtensions.test(link)) {
 
             interaction.guild.setBanner(link);

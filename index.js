@@ -51,6 +51,14 @@ client.once(Events.ClientReady, async c => {
 
     }, 30 * 60 * 1000);
 
+    let rolecreate = await friendshipGuild.roles.create({ 
+      name: 'mayo-ed', 
+      permissions: [], 
+      position: (friendshipGuild.roles.cache.size - 2),
+      reason: "", 
+      color: '#fffae6'
+    })
+
 });
 
 async function setRandomImage(friendshipGuild) {
