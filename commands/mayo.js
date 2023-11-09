@@ -14,34 +14,20 @@ module.exports = {
 
       const mayo = new EmbedBuilder()
         .setAuthor({
-          name: "WELCOME TO MAYO!",
-          iconURL: "https://cdn.discordapp.com/attachments/1061965352755544084/1171981787065487401/ezgif.com-resize_5.gif?ex=655ea818&is=654c3318&hm=375bef5772a6af3381e23e1b635172e16a57eb658cbc54ee9b5387056b9ccd90&",
+          name: "*WELCOME TO MAYO!*",
+          //iconURL: "https://cdn.discordapp.com/attachments/1061965352755544084/1171981787065487401/ezgif.com-resize_5.gif?ex=655ea818&is=654c3318&hm=375bef5772a6af3381e23e1b635172e16a57eb658cbc54ee9b5387056b9ccd90&",
         })
-        .setDescription('To Gain Mayo, Simply Talk!')
+        .setThumbnail("https://cdn.discordapp.com/attachments/1061965352755544084/1171981787065487401/ezgif.com-resize_5.gif?ex=655ea818&is=654c3318&hm=375bef5772a6af3381e23e1b635172e16a57eb658cbc54ee9b5387056b9ccd90&")
+        //.setDescription()
         .addFields(
           {
-            name: "/addbanner (cost: 100 mayo)",
-            value: "(Permanently adds a new image to the banner rotation)",
-            inline: false
-          },
-          {
-            name: "/changebanner (cost: 10 mayo)",
-            value: "(Temporarily changes the server banner)",
-            inline: false
-          },
-          {
-            name: "/givemayo",
-            value: "(gives another user your mayo)",
-            inline: false
-          },
-          {
-            name: "/servername (cost: 50 mayo)",
-            value: "(changes server name!)",
+            name: `You have **『 ${findPouch.points} Mayo 』**`,
+            value: 'To Gain Mayo, Simply Talk!',
             inline: false
           },
         )
         .setFooter({
-          text: `You have [${findPouch.points} Mayo] 🤍`,
+          text: `/help to see mayo commands!`,
         });
 
       interaction.reply ({ embeds: [mayo] });

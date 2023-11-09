@@ -81,8 +81,18 @@ client.on(Events.MessageCreate, async (message) => {
         const command = args.shift().toLowerCase();
     
         // Check the command and respond
-        if (command === 'ping') {
-          message.channel.send('pong');
+        if (command === 'fixmayo') {
+          const members = await message.guild.members.fetch();
+          // console.log (members);
+          members.forEach(async member => {
+            if (await Point.findOne({userId:member.id})) return;
+            const newPouch = new Point ({
+              userId: member.id,
+              points: 0,
+            })
+            await newPouch.save();
+            message.channel.send(`creating mayo for ${member}`);
+          });
         } 
       }
 })
