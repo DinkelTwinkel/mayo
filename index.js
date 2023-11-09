@@ -46,7 +46,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    // (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
 
     setInterval(() => {
 
@@ -173,12 +173,13 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
     now.setUTCHours(now.getUTCHours() + lurkHour);
     // Get the UTC milliseconds for the date 7 days from now
     const utcMilliseconds = now.getTime();
-    const checkLurk = await Lurker.findOne ({ userId: message.member.user.id });
+    const checkLurk = await Lurker.findOne ({ userId: newState.member.user.id });
     checkLurk.lurkTime = utcMilliseconds;
     await checkLurk.save();
 
     newState.member.voice.disconnect();
     console.log(`User ${newState.member.user.tag} joined a voice channel and was immediately disconnected.`);
+
   }
 });
 
