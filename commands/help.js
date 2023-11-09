@@ -37,12 +37,12 @@ module.exports = {
             inline: false
           },
           {
-            name: "/servername (cost: 50 mayo)",
+            name: "/servername (cost: 200 mayo)",
             value: "(changes server name!)",
             inline: false
           },
           {
-            name: "/rename (cost: 20 mayo)",
+            name: "/rename (cost: 50 mayo)",
             value: "(renames another user!)",
             inline: false
           },

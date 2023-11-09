@@ -24,19 +24,19 @@ module.exports = {
       checkPouch.points -= cost;
       await checkPouch.save();
 
-      console.log (interaction.member);
+      // console.log (interaction.member);
 
       // check if already have custom colour.
       let colour = await Colour.findOne ({ userId: interaction.member.id });
       if (colour) {
         interaction.guild.roles.cache.get(colour.roleID).setColor(interaction.options.getString('colour'));
-        interaction.guild.roles.cache.get(colour.roleID).setPosition(interaction.guild.roles.cache.size - 2);
+        interaction.guild.roles.cache.get(colour.roleID).setPosition(interaction.guild.roles.cache.size - 3);
       }
       else {
         let rolecreate = await interaction.guild.roles.create({ 
           name: interaction.member.user.username, 
           permissions: [], 
-          position: (interaction.guild.roles.cache.size - 2),
+          position: (interaction.guild.roles.cache.size - 3),
           reason: "", 
           color: interaction.options.getString('colour')
         })

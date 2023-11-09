@@ -19,6 +19,7 @@ const mongoose = require('mongoose');
 const registerCommands = require ('./registerCommands');
 const Banner = require('./models/bannerimages');
 const Point = require('./models/points');
+const Colour = require('./models/customColour');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -28,6 +29,8 @@ client.once(Events.ClientReady, async c => {
     client.user.setActivity('running away from denil', { type: ActivityType.Playing });
 
     const friendshipGuild = await client.guilds.fetch('1171795345223716964');
+    const mushiesRole = friendshipGuild.roles.cache.get('1171796100223615056');
+    mushiesRole.setPosition(friendshipGuild.roles.cache.size - 2);
     const randomimage = await Banner.aggregate([
         {
             $sample: {
@@ -63,7 +66,18 @@ async function setRandomImage(friendshipGuild) {
 
 client.on(Events.GuildMemberAdd, async (member) => {
 
-    member.roles.add('1171797289581424661')
+  member.roles.add('1171797289581424661')
+
+});
+
+client.on(Events.GuildMemberRemove, async (member) => {
+
+  await Point.deleteOne({ userId: member.user.id });
+  const deletCustomColour = await Colour.findOne({ userId: member.user.id });
+  if (deletCustomColour) {
+    await member.guild.roles.cache.get(deletCustomColour.roleID).delete();
+    await Colour.deleteOne ({ userId: member.user.id });
+  }
 
 });
 

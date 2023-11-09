@@ -14,7 +14,7 @@ module.exports = {
 
     async execute(interaction) {
 
-      const cost = 50;
+      const cost = 200;
       const checkPouch = await Point.findOne ({userId: interaction.member.id});
       if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
       checkPouch.points -= cost;
