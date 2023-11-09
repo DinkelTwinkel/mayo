@@ -1,13 +1,12 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const Banner = require('../models/bannerimages');
 const Point = require('../models/points');
 
 
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('addbanner')
-    .setDescription('add a image into the banner rotation (100 mayo)')
+    .setName('changebanner')
+    .setDescription('change current banner Temporarily (10 mayo)')
     .addStringOption(option =>
       option
         .setName('imagelink')
@@ -16,7 +15,7 @@ module.exports = {
 
     async execute(interaction) {
 
-      const cost = 100;
+      const cost = 10;
       const checkPouch = await Point.findOne ({userId: interaction.member.id});
       if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
       checkPouch.points -= cost;
@@ -30,22 +29,8 @@ module.exports = {
           const imageExtensions = /\.(png|jpeg|jpg|jpg|webp)/i;
           if (imageExtensions.test(link)) {
 
-            const checkImageDupe = await Banner.findOne({imageLink: link});
-            if (checkImageDupe) return interaction.reply ('Link Already Exists!');
-
-            const newBannerLink = new Banner ({
-              imageLink: link,
-              submissionUser: interaction.member.id,
-            })
-
-            try {
-            newBannerLink.save();
             interaction.guild.setBanner(link);
-            interaction.reply('Successfully added new banner image!');
-            }
-            catch (err){
-              interaction.reply(err);
-            }
+            interaction.reply('Successfully changed banner image!');
 
           }
 

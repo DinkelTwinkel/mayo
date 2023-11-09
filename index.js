@@ -18,6 +18,7 @@ const mongoose = require('mongoose');
 
 const registerCommands = require ('./registerCommands');
 const Banner = require('./models/bannerimages');
+const Point = require('./models/points');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -71,6 +72,8 @@ client.on(Events.GuildMemberAdd, async (member) => {
 //Regular Secret Commands 
 //Check if user is also in the hell mart discord. Only work if so.
 client.on(Events.MessageCreate, async (message) => {
+
+
     if (message.content.startsWith('!')) {
         console.log('commandDetected');
         // Extract the command and any arguments
@@ -84,34 +87,50 @@ client.on(Events.MessageCreate, async (message) => {
       }
 })
 
-  // Define a collection to store your commands
-  client.commands = new Map();
+// give user point 
+client.on(Events.MessageCreate, async (message) => {
 
-  // Read the command files and register them
-  const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
+  let userPouch = await Point.findOne ({ userId: message.member.id });
 
-  for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
-    client.commands.set(command.data.name, command);
+  if (!userPouch) {
+    userPouch = new Point ({
+      userId: message.member.id,
+      points: 0,
+    })
   }
+  userPouch.points += 1;
+  await userPouch.save();
 
-  client.on(Events.InteractionCreate, async (interaction) => {
-    if (!interaction.isCommand()) return;
+});
 
-    const { commandName } = interaction;
+// Define a collection to store your commands
+client.commands = new Map();
 
-    const command = client.commands.get(commandName);
+// Read the command files and register them
+const commandFiles = fs.readdirSync('./commands').filter((file) => file.endsWith('.js'));
 
-    if (!command) return;
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.data.name, command);
+}
 
-    try {
-      await command.execute(interaction, client);
-    }
-    catch (error) {
-      console.error(error);
-      await interaction.reply({ content: 'There was an error executing this command.', ephemeral: true });
-    }
-  });
+client.on(Events.InteractionCreate, async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  const command = client.commands.get(commandName);
+
+  if (!command) return;
+
+  try {
+    await command.execute(interaction, client);
+  }
+  catch (error) {
+    console.error(error);
+    await interaction.reply({ content: 'There was an error executing this command.', ephemeral: true });
+  }
+});
 
 // Log in to Discord with your client's token
 
