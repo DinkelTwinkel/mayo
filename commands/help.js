@@ -48,7 +48,7 @@ module.exports = {
           },
           {
             name: "/colour (cost: 15 mayo)",
-            value: "(give yourself a custom colour!)",
+            value: "(give yourself a custom colour! requires a Hex Colour Code! \nThis might help: https://g.co/kgs/YjmHzd )",
             inline: false
           },
         )
