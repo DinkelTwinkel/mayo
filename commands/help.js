@@ -23,38 +23,33 @@ module.exports = {
         .setTitle('MAYO HELP!')
         .addFields(
           {
-            name: "/addbanner (cost: 100 mayo)",
-            value: "(Permanently adds a new image to the banner rotation)",
+            name: "**/addbanner (cost: 100 mayo)**",
+            value: "```Permanently adds a new image to the banner rotation```",
             inline: false
           },
           {
-            name: "/changebanner (cost: 10 mayo)",
-            value: "(Temporarily changes the server banner)",
+            name: "**/changebanner (cost: 10 mayo)**",
+            value: "```Temporarily changes the server banner```",
             inline: false
           },
           {
-            name: "/give",
-            value: "(gives another user your mayo)\n ```Feed mayobot for a chance to win jackpot!" + `\nCurrent Jackpot: ${jackPot.points} MAYO` + '```',
+            name: "**/give**",
+            value: "```gives another user your mayo\nFeed mayobot for a chance to win jackpot!" + `\nCurrent Jackpot: ${jackPot.points} MAYO` + '```',
             inline: false
           },
           {
-            name: "/servername (cost: 200 mayo)",
-            value: "(changes server name!)",
+            name: "**/rename (cost: 50 for user, 100 for channel and 200 for server)**",
+            value: "```renames something on the server!```",
             inline: false
           },
           {
-            name: "/rename (cost: 50 mayo)",
-            value: "(renames another user!)",
+            name: "**/colour (cost: 15 mayo)**",
+            value: "```give yourself a custom colour! requires a Hex Colour Code!```This might help: [hexcode finder](https://g.co/kgs/YjmHzd)",
             inline: false
           },
           {
-            name: "/colour (cost: 15 mayo)",
-            value: "(give yourself a custom colour! requires a Hex Colour Code! ) \nThis might help: https://g.co/kgs/YjmHzd",
-            inline: false
-          },
-          {
-            name: "/throw (1 mayo = 1 second)",
-            value: "(cover another user in mayo!)",
+            name: "**/throw (pay more mayo to cover user longer!)**",
+            value: "```cover another user in mayo!```",
             inline: false
           },
         )

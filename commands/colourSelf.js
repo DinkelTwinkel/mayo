@@ -15,7 +15,7 @@ module.exports = {
     async execute(interaction) {
 
       if (!/^#(?:[0-9a-fA-F]{3}){1,2}$/.test(interaction.options.getString('colour'))) {
-        return message.reply('Please provide a valid color in the format #RRGGBB or #RGB.');
+        return interaction.reply('Please provide a valid color in the format #RRGGBB\nhexcode finder:(https://g.co/kgs/YjmHzd).');
       }
 
       const cost = 15;

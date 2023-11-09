@@ -6,7 +6,7 @@ const Fortune = require('../models/dailyFortune');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('mayo')
-    .setDescription('see your coins'),
+    .setDescription('see your mayo soul'),
 
     async execute(interaction, client) {
 
