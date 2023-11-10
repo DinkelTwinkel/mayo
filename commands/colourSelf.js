@@ -18,40 +18,43 @@ module.exports = {
         return interaction.reply('Please provide a valid color in the format #RRGGBB\nhexcode finder:(https://g.co/kgs/YjmHzd).');
       }
 
-      const cost = 15;
-      const checkPouch = await Point.findOne ({userId: interaction.member.id});
-      if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
-      checkPouch.points -= cost;
-      await checkPouch.save();
-
-      // console.log (interaction.member);
-
-      // check if already have custom colour.
-      let colour = await Colour.findOne ({ userId: interaction.member.id });
-      if (colour) {
-        interaction.guild.roles.cache.get(colour.roleID).setColor(interaction.options.getString('colour'));
-        interaction.guild.roles.cache.get(colour.roleID).setPosition(interaction.guild.roles.cache.size - 3);
-      }
       else {
-        let rolecreate = await interaction.guild.roles.create({ 
-          name: interaction.member.user.username, 
-          permissions: [], 
-          position: (interaction.guild.roles.cache.size - 3),
-          reason: "", 
-          color: interaction.options.getString('colour')
-        })
+        const cost = 15;
+        const checkPouch = await Point.findOne ({userId: interaction.member.id});
+        if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
+        checkPouch.points -= cost;
+        await checkPouch.save();
 
-          interaction.member.roles.add(rolecreate),
-          console.log ('created new colour role')
+        // console.log (interaction.member);
 
-        colour = new Colour ({
-          userId: interaction.member.id,
-          roleID: rolecreate.id,
-        })
+        // check if already have custom colour.
+        let colour = await Colour.findOne ({ userId: interaction.member.id });
+        if (colour) {
+          interaction.guild.roles.cache.get(colour.roleID).setColor(interaction.options.getString('colour'));
+          interaction.guild.roles.cache.get(colour.roleID).setPosition(interaction.guild.roles.cache.size - 3);
+        }
+        else {
+          let rolecreate = await interaction.guild.roles.create({ 
+            name: interaction.member.user.username, 
+            permissions: [], 
+            position: (interaction.guild.roles.cache.size - 3),
+            reason: "", 
+            color: interaction.options.getString('colour')
+          })
 
-        await colour.save();
+            interaction.member.roles.add(rolecreate),
+            console.log ('created new colour role')
+
+          colour = new Colour ({
+            userId: interaction.member.id,
+            roleID: rolecreate.id,
+          })
+
+          await colour.save();
+        }
+        interaction.reply ('new colour applied!');
       }
-      interaction.reply ('new colour applied!')
+
     },
   };
 
