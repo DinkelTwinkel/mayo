@@ -45,7 +45,7 @@ module.exports = {
         .addFields(
           {
             name: '\n',
-            value: '▂▂ **Daily Mayo** ▂▂▂▂▂▂▂ \n```' + `'${userFortune.Fortune.toLowerCase()}'` + '```' ,
+            value: '▂<a:emoji_10:1172398802750156843> **Daily Mayo** ▂▂▂▂▂▂▂ \n```' + `'${userFortune.Fortune.toLowerCase()}'` + '```' ,
             inline: true
           },
           {
