@@ -23,6 +23,7 @@ const Point = require('./models/points');
 const Colour = require('./models/customColour');
 const Fortune = require('./models/dailyFortune');
 const Lurker = require('./models/lurker');
+const sushiConveyor = require('./patterns/sushiConveyor');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -46,7 +47,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    // (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
 
     setInterval(() => {
 
@@ -111,6 +112,17 @@ client.once(Events.ClientReady, async c => {
     members.forEach((member) => {
       if (member.roles.cache.get('1172041699783098452')) member.roles.remove ('1172041699783098452');
     })
+
+    // sushiConveyer 
+
+    const sushiChannel = friendshipGuild.channels.cache.get('1172436511057268747');
+    sushiChannel.setName (await sushiConveyor(sushiChannel.name));
+
+    setInterval(async () => {
+
+      sushiChannel.setName (await sushiConveyor(sushiChannel.name));
+      
+    }, 1000 * 60 * 5);
 
 });
 
@@ -182,8 +194,6 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
   }
 });
-
-
 
 //Regular Secret Commands 
 //Check if user is also in the hell mart discord. Only work if so.
