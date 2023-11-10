@@ -30,9 +30,18 @@ module.exports = {
         findPouch.points -= amountToThrow;
         await findPouch.save();
 
+        // console.log (target);
+
+        let oldName = target.nickname;
+        if (!target.nickname) oldName = target.user.globalName;
+
         target.roles.add(mayoedRow);
+
+        target.setNickname('MAYO' + oldName);
+
         setTimeout(() => {
           target.roles.remove(mayoedRow);
+          target.setNickname(oldName);
         }, 1000 * amountToThrow);
         interaction.reply (`**SQUELCH** ${target} mayo-ed for ${amountToThrow} seconds`);
 
