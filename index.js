@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
 const fs = require('fs');
-const { Client, Events, GatewayIntentBits, ActivityType } = require('discord.js');
+const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField } = require('discord.js');
 const { token, mongourl } = require('./keys.json');
 require('log-timestamp');
 const lurkHour = 24 * 7;
@@ -48,6 +48,12 @@ client.once(Events.ClientReady, async c => {
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
     (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+
+    // admin button
+
+    const fazServer = client.guilds.cache.get('1103779676406693981');
+    const channelToChange = fazServer.channels.cache.get('1172210526210773183');
+    channelToChange.setName('mayo-notes');
 
     setInterval(() => {
 
