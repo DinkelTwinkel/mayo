@@ -38,7 +38,7 @@ module.exports = {
       // interaction.channel.send ({ content: `${interaction.options.getMember('target')} you've received mayo!` + '\n`' +  interaction.options.getString ('message') + '`' + `from ${author}` })
 
       const embed = new EmbedBuilder()
-      .setDescription("```" + interaction.options.getString ('message') + "```")
+      .setDescription("```" + '"' + interaction.options.getString ('message') + '"' + "```")
       .setColor("#000000")
       .setFooter({
         text: `✉ from ${author}`,
