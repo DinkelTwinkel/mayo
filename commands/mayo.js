@@ -42,6 +42,7 @@ module.exports = {
         .setThumbnail("https://cdn.discordapp.com/attachments/1061965352755544084/1171981787065487401/ezgif.com-resize_5.gif?ex=655ea818&is=654c3318&hm=375bef5772a6af3381e23e1b635172e16a57eb658cbc54ee9b5387056b9ccd90&")
         //.setDescription()
         // .setTitle(`You have **『 ${findPouch.points} Mayo 』**`)
+        .setColor("#fff3b8")
         .addFields(
           {
             name: '\n',
