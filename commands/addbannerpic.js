@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const Banner = require('../models/bannerimages');
 const Point = require('../models/points');
+const increaseJackPot = require('../patterns/increaseJackPot');
 
 
 
@@ -20,6 +21,7 @@ module.exports = {
       const checkPouch = await Point.findOne ({userId: interaction.member.id});
       if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
       checkPouch.points -= cost;
+      increaseJackPot(cost);
       await checkPouch.save();
 
         // check if cdn

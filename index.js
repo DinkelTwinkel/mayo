@@ -51,9 +51,9 @@ client.once(Events.ClientReady, async c => {
 
     // admin button
 
-    const fazServer = client.guilds.cache.get('1103779676406693981');
-    const channelToChange = fazServer.channels.cache.get('1172210526210773183');
-    channelToChange.setName('mayo-notes');
+    // const fazServer = client.guilds.cache.get('1103779676406693981');
+    // const channelToChange = fazServer.channels.cache.get('1172210526210773183');
+    // channelToChange.setName('mayo-notes');
 
     setInterval(() => {
 
