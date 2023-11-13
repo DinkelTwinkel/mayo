@@ -46,9 +46,11 @@ module.exports = {
 
         let currentlyHave = 0;
 
-        const itemCheck = playerInventory.find(playerInventory => playerInventory.itemName === stock.stockName)
-        if (itemCheck) {
-          currentlyHave = itemCheck.quantity;
+        if (playerInventory) {
+          const itemCheck = playerInventory.find(playerInventory => playerInventory.itemName === stock.stockName)
+          if (itemCheck) {
+            currentlyHave = itemCheck.quantity;
+          }
         }
 
         const stockSellButton = new ButtonBuilder ()
