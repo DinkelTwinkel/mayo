@@ -15,11 +15,16 @@ module.exports = {
       // generate button row.
 
       const stocks = await Stock.find();
+      
+      const playerInventory = await Inventory.find({ ownerId: interaction.member.user.id });
+
       const actionRowArray = [];
 
-      // console.log (stocks);
+      console.log (stocks);
 
       stocks.forEach(async stock => {
+
+        // console.log ('creating stock' + stock.stockName);
 
         const stockNameButton = new ButtonBuilder ()
           .setCustomId('Fake' + stock.stockName)
@@ -39,11 +44,18 @@ module.exports = {
           .setStyle(ButtonStyle.Secondary)
           .setLabel('BUY');
 
+        let currentlyHave = 0;
+
+        const itemCheck = playerInventory.find(playerInventory => playerInventory.itemName === stock.stockName)
+        if (itemCheck) {
+          currentlyHave = itemCheck.quantity;
+        }
+
         const stockSellButton = new ButtonBuilder ()
           .setCustomId('sell' + stock.stockName)
           .setDisabled(false)
           .setStyle(ButtonStyle.Secondary)
-          .setLabel('SELL');
+          .setLabel(`SELL: [${currentlyHave}]`);
 
         const stockRisingButton = new ButtonBuilder ()
           .setCustomId('Fake' + stock.stockName + 'Rising')
@@ -51,21 +63,6 @@ module.exports = {
           .setStyle(ButtonStyle.Success)
           .setLabel('↗');
 
-        let currentlyHave = await Inventory.findOne({ ownerId: interaction.member.user.id, itemName: stock.stockName });
-        if (!currentlyHave) {
-          currentlyHave = new Inventory ({ 
-            ownerId: interaction.member.user.id, 
-            itemName: stock.stockName,
-            quantity: 0,
-          })
-        }
-        await currentlyHave.save();
-
-        const stockInventoryButton = new ButtonBuilder ()
-          .setCustomId('Fake' + stock.stockName + 'CurrentlyHave')
-          .setDisabled(true)
-          .setStyle(ButtonStyle.Success)
-          .setLabel(`OWNED: ${currentlyHave.quantity}`);
 
         if (stock.rising === false) {
           stockRisingButton.setLabel('↘')
@@ -73,16 +70,17 @@ module.exports = {
         }
         
         const newActionRow = new ActionRowBuilder ()
-        .addComponents( stockInventoryButton, stockNameButton, stockValueButton, stockBuyButton, stockSellButton, stockRisingButton);
+        .addComponents( stockNameButton, stockValueButton, stockBuyButton, stockSellButton, stockRisingButton);
 
         actionRowArray.push(newActionRow);
 
       });
 
-      let username = target.nickname;
-      if (!target.nickname) username = target.user.globalName;
 
-      interaction.reply ({ content: 'MAYO STOCK MARKET: ' + username , components: actionRowArray , ephemeral: false })
+      let username = interaction.member.nickname;
+      if (!interaction.member.nickname) username = interaction.membern.user.globalName;
+
+      interaction.reply ({ content: 'MAYO STOCK MARKET: ' + username, components: actionRowArray , ephemeral: false })
 
     },
   };
