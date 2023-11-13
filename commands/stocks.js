@@ -80,7 +80,7 @@ module.exports = {
 
 
       let username = interaction.member.nickname;
-      if (!interaction.member.nickname) username = interaction.membern.user.globalName;
+      if (!interaction.member.nickname) username = interaction.member.user.globalName;
 
       interaction.reply ({ content: 'MAYO STOCK MARKET: ' + username, components: actionRowArray , ephemeral: false })
 
