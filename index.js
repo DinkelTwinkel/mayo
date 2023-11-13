@@ -24,6 +24,8 @@ const Colour = require('./models/customColour');
 const Fortune = require('./models/dailyFortune');
 const Lurker = require('./models/lurker');
 const sushiConveyor = require('./patterns/sushiConveyor');
+const Stock = require('./models/stock');
+const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -49,11 +51,17 @@ client.once(Events.ClientReady, async c => {
 
     (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
 
-    // admin button
+    // const newStock = new Stock ({
+    //   stockName: "Mayo Corp Ltd",
+    //   currentValue: 5,
+    //   passiveFluctuation: 1,
+    //   onePercentChanceFluctuation:20,
+    // })
+    // newStock.save();
 
-    // const fazServer = client.guilds.cache.get('1103779676406693981');
-    // const channelToChange = fazServer.channels.cache.get('1172210526210773183');
-    // channelToChange.setName('mayo-notes');
+    
+    stockBuySellFluctuations(client);
+
 
     setInterval(() => {
 
@@ -129,7 +137,6 @@ client.once(Events.ClientReady, async c => {
       sushiChannel.setName (await sushiConveyor(sushiChannel.name));
       
     }, 1000 * 60 * 5);
-
 });
 
 async function setRandomImage(friendshipGuild) {
