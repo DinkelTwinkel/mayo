@@ -79,7 +79,10 @@ module.exports = {
 
       });
 
-      interaction.reply ({ components: actionRowArray , ephemeral: false })
+      let username = target.nickname;
+      if (!target.nickname) username = target.user.globalName;
+
+      interaction.reply ({ content: 'MAYO STOCK MARKET: ' + username , components: actionRowArray , ephemeral: false })
 
     },
   };
