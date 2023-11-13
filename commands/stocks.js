@@ -3,6 +3,7 @@ const Point = require('../models/points');
 const getAllMessagesInChannel = require('../patterns/getAllMessagesInChannel');
 const Fortune = require('../models/dailyFortune');
 const Stock = require('../models/stock');
+const Inventory = require('../models/inventory');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -50,13 +51,29 @@ module.exports = {
           .setStyle(ButtonStyle.Success)
           .setLabel('↗');
 
+        let currentlyHave = await Inventory.findOne({ ownerId: interaction.member.user.id, itemName: stock.stockName });
+        if (!currentlyHave) {
+          currentlyHave = new Inventory ({ 
+            ownerId: interaction.member.user.id, 
+            itemName: stock.stockName,
+            quantity: 0,
+          })
+        }
+        await currentlyHave.save();
+
+        const stockInventoryButton = new ButtonBuilder ()
+          .setCustomId('Fake' + stock.stockName + 'CurrentlyHave')
+          .setDisabled(true)
+          .setStyle(ButtonStyle.Success)
+          .setLabel(`OWNED: ${currentlyHave.quantity}`);
+
         if (stock.rising === false) {
           stockRisingButton.setLabel('↘')
           stockRisingButton.setStyle(ButtonStyle.Danger);
         }
         
         const newActionRow = new ActionRowBuilder ()
-        .addComponents( stockNameButton, stockValueButton, stockBuyButton, stockSellButton, stockRisingButton);
+        .addComponents( stockInventoryButton, stockNameButton, stockValueButton, stockBuyButton, stockSellButton, stockRisingButton);
 
         actionRowArray.push(newActionRow);
 
