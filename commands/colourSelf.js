@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const Point = require('../models/points');
 const Colour = require('../models/customColour');
+const increaseJackPot = require('../patterns/increaseJackPot');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,6 +24,7 @@ module.exports = {
         const checkPouch = await Point.findOne ({userId: interaction.member.id});
         if (checkPouch.points < cost) return interaction.reply (`You do not have enough Mayo! You need ${cost} mayo to perform this action!`);
         checkPouch.points -= cost;
+        increaseJackPot(cost);
         await checkPouch.save();
 
         // console.log (interaction.member);
@@ -37,7 +39,7 @@ module.exports = {
           let rolecreate = await interaction.guild.roles.create({ 
             name: interaction.member.user.username, 
             permissions: [], 
-            position: (interaction.guild.roles.cache.size - 3),
+            position: (interaction.guild.roles.cache.size - 4),
             reason: "", 
             color: interaction.options.getString('colour')
           })

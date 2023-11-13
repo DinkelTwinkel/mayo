@@ -49,13 +49,13 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
-    //   stockName: "Mayo Corp Ltd",
-    //   currentValue: 5,
-    //   passiveFluctuation: 1,
-    //   onePercentChanceFluctuation:20,
+    //   stockName: "pasha's",
+    //   currentValue: 10,
+    //   passiveFluctuation: 10,
+    //   onePercentChanceFluctuation:-1000,
     // })
     // newStock.save();
 

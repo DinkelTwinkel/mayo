@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const inventorySchema = new Schema({
 
-	itemName: { type: String, required: true, unique: true },
-	ownerId: { type: String, required: true },
-	quantity: { type: Number, required: true },
+	itemName: { type: String, required: true, unique: false },
+	ownerId: { type: String, required: true, unique: false  },
+	quantity: { type: Number, required: true, unique: false  },
 
 }, { timestamps: true });
 
