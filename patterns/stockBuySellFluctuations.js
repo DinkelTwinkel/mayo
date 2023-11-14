@@ -22,6 +22,7 @@ module.exports = async (client) => {
 
     if (0.01 > Math.random()) {
       change = stock.onePercentChanceFluctuation;
+      if (stock.onePercentChanceFluctuation < 0) stock.rising = false;
     }
 
     change = Math.ceil(change * Math.random());
