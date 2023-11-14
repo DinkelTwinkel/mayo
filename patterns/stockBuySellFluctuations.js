@@ -61,7 +61,7 @@ module.exports = async (client) => {
 
       change = Math.ceil(change * Math.random());
 
-      stock.currentShift = change / stock.currentValue;
+      stock.currentShift = Math.round((change / stock.currentValue) * 100) / 100;
 
       if (rising === true) {
         stock.currentValue += change;
