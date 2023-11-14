@@ -30,6 +30,7 @@ module.exports = async (client) => {
 
     if (rising === true) {
       stock.currentValue += change;
+      if (stock.currentValue < 1) stock.currentValue = 1;
     }
     else {
       stock.currentValue -= change;
