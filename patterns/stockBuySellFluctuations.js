@@ -2,6 +2,7 @@ const { Events } = require("discord.js");
 const Stock = require("../models/stock");
 const Point = require("../models/points");
 const Inventory = require("../models/inventory");
+const getAllMessagesInChannel = require("./getAllMessagesInChannel");
 
 const stockFluctuationTimer = 10;
 
@@ -9,71 +10,11 @@ module.exports = async (client) => {
 
   console.log ('StockMarket Module Engaged');
 
-  let stocks = await Stock.find();
-  stocks.forEach (stock => {
-
-    if (0.1 > Math.random()) {
-      stock.rising = !stock.rising;
-    }
-    
-    const rising = stock.rising;
-    
-    let change = stock.passiveFluctuation;
-
-    if (0.01 > Math.random()) {
-      change = stock.onePercentChanceFluctuation;
-      if (stock.onePercentChanceFluctuation < 0) stock.rising = false;
-    }
-
-    change = Math.ceil(change * Math.random());
-
-    stock.currentShift = Math.round((change / stock.currentValue) * 100) / 100;
-
-    if (rising === true) {
-      stock.currentValue += change;
-      if (stock.currentValue < 1) stock.currentValue = 1;
-    }
-    else {
-      stock.currentValue -= change;
-      if (stock.currentValue < 1) stock.currentValue = 1;
-    }
-
-    stock.save();
-
-  })
+  shiftStock ();
 
   setInterval(async () => {
 
-    stocks = await Stock.find();
-    stocks.forEach (stock => {
-
-      if (0.1 > Math.random()) {
-        stock.rising = !stock.rising;
-      }
-      
-      const rising = stock.rising;
-      
-      let change = stock.passiveFluctuation;
-
-      if (0.01 > Math.random()) {
-        change = stock.onePercentChanceFluctuation;
-      }
-
-      change = Math.ceil(change * Math.random());
-
-      stock.currentShift = Math.round((change / stock.currentValue) * 100) / 100;
-
-      if (rising === true) {
-        stock.currentValue += change;
-      }
-      else {
-        stock.currentValue -= change;
-        if (stock.currentValue < 1) stock.currentValue = 1;
-      }
-
-      stock.save();
-
-    })
+    shiftStock ();
     
   }, 1000 * 60 * stockFluctuationTimer);
 
@@ -115,7 +56,7 @@ module.exports = async (client) => {
 
         checkExistingInventory.quantity += 1;
 
-        console.log (checkExistingInventory);
+        // console.log (checkExistingInventory);
 
         await checkExistingInventory.save();
 
@@ -150,3 +91,70 @@ module.exports = async (client) => {
   });
 
 };
+
+async function shiftStock () {
+
+  let stocks = await Stock.find();
+  stocks.forEach (async stock => {
+
+    if (0.1 > Math.random()) {
+      stock.rising = !stock.rising;
+    }
+    
+    const rising = stock.rising;
+    
+    let change = stock.passiveFluctuation;
+
+    if (0.01 > Math.random()) {
+      change = stock.onePercentChanceFluctuation;
+      if (stock.onePercentChanceFluctuation < 0) stock.rising = false;
+    }
+
+    change = Math.ceil(change * Math.random());
+
+    stock.currentShift = Math.round((change / stock.currentValue) * 100) / 100;
+
+    if (rising === true) {
+      stock.currentValue += change;
+      if (stock.currentValue < 1) stock.currentValue = 1;
+    }
+    else {
+      stock.currentValue -= change;
+      if (stock.currentValue < 1) {
+        //stock death
+        console.log (stock.stockName + ' has died, generating new stock');
+        await client.guilds.cache.get('1171795345223716964').channels.cache.get('1171804720906641428').send(stock.stockName + ' has died, new stock available.');
+
+        // replace stock with new stock. 
+
+        // pick random stock name.
+        stock = Stock ({
+          stockName: getStockName(),
+          currentValue: Math.ceil(Math.random() * 100),
+          passiveFluctuation: Math.ceil(Math.random() * 100),
+          onePercentChanceFluctuation: Math.ceil(Math.random() * 1000),
+        })
+
+      }
+    }
+
+    stock.save();
+
+  })
+
+}
+
+async function getStockName(client) {
+
+  const backRooms = client.guilds.cache.get('1103779676406693981');
+  const cookieChannel = backRooms.channels.cache.get('1173936658169745478');
+
+  const messages = await getAllMessagesInChannel(cookieChannel);
+
+  const randomIndex = Math.floor(Math.random() * messages.length);
+
+  const randomMessage = Array.from(messages)[randomIndex];
+
+  return randomMessage.content;
+
+}
