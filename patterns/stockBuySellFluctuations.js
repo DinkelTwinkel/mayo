@@ -123,7 +123,7 @@ async function shiftStock () {
       if (stock.currentValue < 1) {
         //stock death
         console.log (stock.stockName + ' has died, generating new stock');
-        await client.guilds.cache.get('1171795345223716964').channels.cache.get('1171804720906641428').send(stock.stockName + ' has died, new stock available.');
+        await client.guilds.cache.get('1171795345223716964').channels.cache.get('1171804720906641428').send(stock.stockName + ' has gone bankrupt! new stock available.');
 
         // replace stock with new stock. 
 
