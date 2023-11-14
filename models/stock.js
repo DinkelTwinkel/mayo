@@ -8,6 +8,7 @@ const stockSchema = new Schema({
 	passiveFluctuation: { type: Number, required: true },
 	onePercentChanceFluctuation: { type: Number, required: true },
 	rising: { type: Boolean, required: true, default: true },
+	currentShift: { type: Number, required: true, default: 0 },
 
 }, { timestamps: true });
 

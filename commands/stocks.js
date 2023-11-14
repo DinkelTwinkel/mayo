@@ -63,11 +63,11 @@ module.exports = {
           .setCustomId('Fake' + stock.stockName + 'Rising')
           .setDisabled(true)
           .setStyle(ButtonStyle.Success)
-          .setLabel('↗');
+          .setLabel(`+${stock.currentShift}%↗`);
 
 
         if (stock.rising === false) {
-          stockRisingButton.setLabel('↘')
+          stockRisingButton.setLabel(`-${stock.currentShift}%↘`)
           stockRisingButton.setStyle(ButtonStyle.Danger);
         }
         
