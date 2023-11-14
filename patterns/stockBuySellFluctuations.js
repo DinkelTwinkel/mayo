@@ -10,11 +10,11 @@ module.exports = async (client) => {
 
   console.log ('StockMarket Module Engaged');
 
-  shiftStock ();
+  shiftStock (client);
 
   setInterval(async () => {
 
-    shiftStock ();
+    shiftStock (client);
     
   }, 1000 * 60 * stockFluctuationTimer);
 
@@ -92,7 +92,7 @@ module.exports = async (client) => {
 
 };
 
-async function shiftStock () {
+async function shiftStock (client) {
 
   let stocks = await Stock.find();
   stocks.forEach (async stock => {
@@ -128,12 +128,21 @@ async function shiftStock () {
         // replace stock with new stock. 
 
         // pick random stock name.
-        stock = Stock ({
-          stockName: getStockName(),
-          currentValue: Math.ceil(Math.random() * 100),
-          passiveFluctuation: Math.ceil(Math.random() * 100),
-          onePercentChanceFluctuation: Math.ceil(Math.random() * 1000),
-        })
+        // stock = ({
+        //   stockName: await getStockName(client),
+        //   currentValue: Math.ceil(Math.random() * 100),
+        //   passiveFluctuation: Math.ceil(Math.random() * 100),
+        //   onePercentChanceFluctuation: Math.ceil(Math.random() * 1000),
+        // })
+
+        stock.stockName = await getStockName(client);
+        stock.currentValue = Math.ceil(Math.random() * 100);
+        stock.passiveFluctuation = Math.ceil(Math.random() * 100);
+        stock.onePercentChanceFluctuation = Math.ceil(Math.random() * 1000);
+        stock.currentShift = 0;
+
+        if (Math.random() < 0.2) stock.onePercentChanceFluctuation = stock.onePercentChanceFluctuation * -1;
+
 
       }
     }
@@ -146,8 +155,8 @@ async function shiftStock () {
 
 async function getStockName(client) {
 
-  const backRooms = client.guilds.cache.get('1103779676406693981');
-  const cookieChannel = backRooms.channels.cache.get('1173936658169745478');
+  const backRooms = await client.guilds.cache.get('1103779676406693981');
+  const cookieChannel = await backRooms.channels.cache.get('1173936658169745478');
 
   const messages = await getAllMessagesInChannel(cookieChannel);
 
