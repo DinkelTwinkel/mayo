@@ -24,6 +24,10 @@ module.exports = async (client) => {
       change = stock.onePercentChanceFluctuation;
     }
 
+    change = Math.ceil(change * Math.random());
+
+    stock.currentShift = change / stock.currentValue;
+
     if (rising === true) {
       stock.currentValue += change;
     }
