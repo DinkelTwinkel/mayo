@@ -19,7 +19,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setTitle(' LEADERBOARD: TOP 25 ')
-      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▶ ${players[0].points} MAYO\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
+      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▬▶ ${players[0].points} MAYO\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
       .setThumbnail(firstPlace.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
       .setColor("#f5f3b8")
 
@@ -35,7 +35,7 @@ module.exports = {
   
           embed.addFields({
             name: `『${index + 1}』${username}`,
-            value: `-▶ ${players[index].points.toString()}`,
+            value: `-▶ ${players[index].points.toString()} Mayo`,
             inline: true
           })
   
