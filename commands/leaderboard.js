@@ -35,7 +35,7 @@ module.exports = {
   
           embed.addFields({
             name: `『${index + 1}』${username}`,
-            value: `${players[index].points.toString()}`,
+            value: `-▶ ${players[index].points.toString()}`,
             inline: true
           })
   
