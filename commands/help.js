@@ -52,6 +52,21 @@ module.exports = {
             value: "```cover another user in mayo!```",
             inline: false
           },
+          {
+            name: "**/stocks**",
+            value: "```get rich quick```",
+            inline: false
+          },
+          {
+            name: "**/leaderboard**",
+            value: "```who should I rob?```",
+            inline: false
+          },
+          {
+            name: "**/blackmayo**",
+            value: "```send death threats anonymously!```",
+            inline: false
+          },
         )
         .setFooter({
           text: `You currently have ${findPouch.points} Mayo 🤍`,
