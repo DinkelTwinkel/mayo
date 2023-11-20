@@ -37,13 +37,16 @@ module.exports = {
 
         target.roles.add(mayoedRow);
 
-        target.setNickname('MAYO' + oldName);
+        try {target.setNickname('MAYO' + oldName)
 
-        setTimeout(() => {
-          target.roles.remove(mayoedRow);
-          target.setNickname(oldName);
-        }, 1000 * amountToThrow);
-        interaction.reply (`**SQUELCH** ${target} mayo-ed for ${amountToThrow} seconds`);
+          setTimeout(() => {
+            target.roles.remove(mayoedRow);
+            target.setNickname(oldName);
+          }, 1000 * amountToThrow);
+          interaction.reply (`**SQUELCH** ${target} mayo-ed for ${amountToThrow} seconds`);
+
+        }
+        catch (err) {};
 
       }
       else {
