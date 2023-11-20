@@ -3,9 +3,9 @@ const Banner = require('../models/bannerimages');
 const Point = require('../models/points');
 const increaseJackPot = require('../patterns/increaseJackPot');
 
-const serverCost = 200;
+const serverCost = 5000;
 const userCost = 50;
-const channelCost = 100;
+const channelCost = 2000;
 
 module.exports = {
     data: new SlashCommandBuilder()

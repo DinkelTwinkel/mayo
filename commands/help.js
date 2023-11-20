@@ -38,7 +38,7 @@ module.exports = {
             inline: false
           },
           {
-            name: "**/rename (cost: 50 for user, 100 for channel and 200 for server)**",
+            name: "**/rename (cost: 50 for user, 2000 for channel and 5000 for server)**",
             value: "```renames something on the server!```",
             inline: false
           },
