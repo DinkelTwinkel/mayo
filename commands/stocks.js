@@ -36,7 +36,7 @@ module.exports = {
           .setCustomId('Fake' + stock.stockName + stock.currentValue)
           .setDisabled(true)
           .setStyle(ButtonStyle.Secondary)
-          .setLabel(`Share Price: ${stock.currentValue} Mayo`);
+          .setLabel(`Share Price: ${stock.currentValue} VBUCKS`);
 
         const stockBuyButton = new ButtonBuilder ()
           .setCustomId('buy' + stock.stockName)

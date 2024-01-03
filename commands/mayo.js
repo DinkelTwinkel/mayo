@@ -56,7 +56,7 @@ module.exports = {
           },
           {
             name: '\n',
-            value: `You have:\n**『 ${findPouch.points} Mayo 』**`,
+            value: `You have:\n**『 ${findPouch.points} VBUCKS 』**`,
             inline: true
           },
         )

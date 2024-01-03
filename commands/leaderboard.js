@@ -4,7 +4,7 @@ const Point = require('../models/points');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('who has the most mayo?'),
+    .setDescription('who has the most VBUCKS?'),
 
     async execute(interaction, client) {
 
@@ -19,7 +19,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setTitle(' LEADERBOARD: TOP 25 ')
-      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▬▶ ${players[0].points} MAYO\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
+      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▬▶ ${players[0].points} VBUCKS\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
       .setThumbnail(firstPlace.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
       .setColor("#f5f3b8")
 
@@ -35,7 +35,7 @@ module.exports = {
   
           embed.addFields({
             name: `『${index + 1}』${username}`,
-            value: `-▶ ${players[index].points.toString()} Mayo`,
+            value: `-▶ ${players[index].points.toString()} VBUCKS`,
             inline: true
           })
   
