@@ -60,7 +60,7 @@ module.exports = {
           findPouch.points -= amountToGive;
           targetPouch.points += amountToGive;
 
-          interaction.reply (`${amountToGive} VBUCKS transferred to ${interaction.options.getUser('target')}`);
+          interaction.reply (`${amountToGive} mayo transferred to ${interaction.options.getUser('target')}`);
           
         }
 
@@ -71,7 +71,7 @@ module.exports = {
 
       }
       else {
-        interaction.reply ('You don\'t have enough VBUCKS to give!');
+        interaction.reply ('You don\'t have enough mayo to give!');
       }
 
     },
