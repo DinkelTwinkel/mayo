@@ -21,7 +21,7 @@ module.exports = {
       increaseJackPot(cost);
       await checkPouch.save();
 
-      const now = new Date().getTime();
+      const now = new Date();
       now.setUTCHours(now.getUTCHours() + (24 * 7));
 
       await interaction.editReply(`10000 MAYO SACRIFICED.`);
@@ -33,14 +33,15 @@ module.exports = {
         const membersArray = Array.from(members);
 
         for (let index = 0; index < membersArray.length; index++) {
+          console.log (membersArray[index][1]);
 
-          if (membersArray[index].roles.cache.get('1172197535922798644')) {
+          if (membersArray[index][1].roles.cache.get('1172197535922798644')) {
 
-            interaction.channel.send({ content: `RESURRECTING ${membersArray[index]}`});
-            const lurkResult = await Lurker.findOne({userId: membersArray[index].id});
+            interaction.channel.send({ content: `RESURRECTING ${membersArray[index][1]}`});
+            const lurkResult = await Lurker.findOne({userId: membersArray[index][1].id});
             lurkResult.lurkTime = now.getTime();
             await lurkResult.save();
-            membersArray[index].roles.set(['1171797289581424661']).catch((err) => {});
+            membersArray[index][1].roles.set(['1171797289581424661']).catch((err) => {});
 
           }
           
