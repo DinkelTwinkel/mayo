@@ -49,7 +49,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
@@ -100,13 +100,19 @@ client.once(Events.ClientReady, async c => {
         console.log ('found result');
         result.forEach (async (r) => {
           // turn user into a ghost.
-          (await friendshipGuild.members.fetch(r.userId)).roles.set(['1172197535922798644']).catch((err) => {});
-
-          const deletCustomColour = await Colour.findOne({ userId: r.userId });
-          if (deletCustomColour) {
-            await friendshipGuild.roles.fetch(deletCustomColour.roleID).delete();
-            await Colour.deleteOne ({ userId: r.userId });
+          if (friendshipGuild.members.cache.get(r.userId)) {
+            await friendshipGuild.members.fetch(r.userId).roles.set(['1172197535922798644']).catch((err) => {});
           }
+          // const deletCustomColour = await Colour.findOne({ userId: r.userId });
+          // if (deletCustomColour) {
+          //   // try {
+          //   //   friendshipGuild.roles.fetch(deletCustomColour.roleID).delete();
+          //   // }
+          //   // catch (err) {
+          //   //   console.log(err);
+          //   // }
+          //   await Colour.deleteOne ({ userId: r.userId });
+          // }
 
           const now = new Date();
           // Add 24 hours to the current date and time
