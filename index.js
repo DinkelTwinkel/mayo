@@ -26,9 +26,12 @@ const Lurker = require('./models/lurker');
 const sushiConveyor = require('./patterns/sushiConveyor');
 const Stock = require('./models/stock');
 const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
+const casinoController = require('./patterns/casinoController');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
+
+  casinoController(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
