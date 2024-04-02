@@ -49,7 +49,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
+    //(await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
