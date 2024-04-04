@@ -21,13 +21,13 @@ module.exports = {
       subcommand
         .setName('server')
         .setDescription(`change server\'s name (${serverCost} mayo)`)
-        .addStringOption(option => option.setName('name').setDescription('new name!').setRequired(true)))
-    .addSubcommand(subcommand =>
-      subcommand
-        .setName('channel')
-        .setDescription(`change channel\'s name (${channelCost} mayo)`)
-        .addChannelOption(option => option.setName('target').setDescription('The channel to rename').setRequired(true))
         .addStringOption(option => option.setName('name').setDescription('new name!').setRequired(true))),
+    // .addSubcommand(subcommand =>
+    //   subcommand
+    //     .setName('channel')
+    //     .setDescription(`change channel\'s name (${channelCost} mayo)`)
+    //     .addChannelOption(option => option.setName('target').setDescription('The channel to rename').setRequired(true))
+    //     .addStringOption(option => option.setName('name').setDescription('new name!').setRequired(true))),
 
     // .addUserOption(option =>
 		// 	option
