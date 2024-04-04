@@ -120,6 +120,7 @@ client.once(Events.ClientReady, async c => {
           // turn user into a ghost.
           if (friendshipGuild.members.cache.get(r.userId)) {
             await friendshipGuild.members.fetch(r.userId).roles.set(['1172197535922798644']).catch((err) => {});
+            await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has become a ghooooooooooooooooooost👻`);
           }
           // const deletCustomColour = await Colour.findOne({ userId: r.userId });
           // if (deletCustomColour) {
