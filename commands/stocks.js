@@ -1,7 +1,4 @@
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
-const Point = require('../models/points');
-const getAllMessagesInChannel = require('../patterns/getAllMessagesInChannel');
-const Fortune = require('../models/dailyFortune');
 const Stock = require('../models/stock');
 const Inventory = require('../models/inventory');
 
@@ -45,13 +42,17 @@ module.exports = {
           .setLabel('BUY');
 
         let currentlyHave = 0;
+        let profit = 0;
 
         if (playerInventory) {
           const itemCheck = playerInventory.find(playerInventory => playerInventory.itemName === stock.stockName)
+          
           if (itemCheck) {
+            profit = (stock.currentValue * itemCheck.quantity) - itemCheck.totalSpent;
             currentlyHave = itemCheck.quantity;
           }
         }
+
 
         const stockSellButton = new ButtonBuilder ()
           .setCustomId('sell' + stock.stockName)
@@ -63,11 +64,11 @@ module.exports = {
           .setCustomId('Fake' + stock.stockName + 'Rising')
           .setDisabled(true)
           .setStyle(ButtonStyle.Success)
-          .setLabel(`+${stock.currentShift}%↗`);
+          .setLabel(`PROFIT: ${profit}`);
 
 
-        if (stock.rising === false) {
-          stockRisingButton.setLabel(`-${stock.currentShift}%↘`)
+        if (profit < 0) {
+          //stockRisingButton.setLabel(`-${stock.currentShift}%↘`)
           stockRisingButton.setStyle(ButtonStyle.Danger);
         }
         
@@ -82,7 +83,7 @@ module.exports = {
       let username = interaction.member.nickname;
       if (!interaction.member.nickname) username = interaction.member.user.globalName;
 
-      interaction.reply ({ content: 'MAYO STOCK MARKET: ' + username, components: actionRowArray , ephemeral: false })
+      interaction.reply ({ content: 'use !stocks to get access to stock trading channel.', components: actionRowArray , ephemeral: true })
 
     },
   };

@@ -31,6 +31,12 @@ registerCommands;
 
 client.once(Events.ClientReady, async c => {
 
+  // await Stock.updateMany({$set:
+  //   {
+  //     colourCode: 0,
+  //   }
+  // });
+
   casinoController(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
@@ -241,6 +247,23 @@ client.on(Events.MessageCreate, async (message) => {
           message.channel.send(`creating mayo for ${member}`);
         });
       } 
+
+      if (command === 'stocks') {
+
+        const kimoServer =  await client.guilds.fetch('1171795345223716964');
+        //await kimoServer.members.fetch();
+        const therapyRole = kimoServer.roles.cache.get('1225494350532968519');
+        const member = kimoServer.members.cache.get(message.member.user.id);
+
+        if (member.roles.cache.has(therapyRole.id)) {
+            member.roles.remove(therapyRole);
+            return deleteMessage(message);
+        }
+        else {
+            member.roles.add(therapyRole);
+            return deleteMessage(message);
+        }
+      }
     }
 })
 
