@@ -67,7 +67,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
@@ -262,6 +262,23 @@ client.on(Events.MessageCreate, async (message) => {
         const kimoServer =  await client.guilds.fetch('1171795345223716964');
         //await kimoServer.members.fetch();
         const therapyRole = kimoServer.roles.cache.get('1225494350532968519');
+        const member = kimoServer.members.cache.get(message.member.user.id);
+
+        if (member.roles.cache.has(therapyRole.id)) {
+            member.roles.remove(therapyRole);
+            return deleteMessage(message);
+        }
+        else {
+            member.roles.add(therapyRole);
+            return deleteMessage(message);
+        }
+      }
+
+      if (command === '!spam') {
+
+        const kimoServer =  await client.guilds.fetch('1171795345223716964');
+        //await kimoServer.members.fetch();
+        const therapyRole = kimoServer.roles.cache.get('1225518821175988367');
         const member = kimoServer.members.cache.get(message.member.user.id);
 
         if (member.roles.cache.has(therapyRole.id)) {

@@ -20,7 +20,7 @@ module.exports = {
         // })
         .setThumbnail("https://cdn.discordapp.com/attachments/1061965352755544084/1171981787065487401/ezgif.com-resize_5.gif?ex=655ea818&is=654c3318&hm=375bef5772a6af3381e23e1b635172e16a57eb658cbc54ee9b5387056b9ccd90&")
         //.setDescription('To Gain Mayo, Simply Talk!')
-        .setTitle('MAYO HELP!')
+        .setTitle('MAYO HELP! use !spam to get access to the spam channel for testing commands!')
         .addFields(
           {
             name: "**/addbanner (cost: 100 mayo)**",
@@ -82,7 +82,7 @@ module.exports = {
           text: `You currently have ${findPouch.points} Mayo 🤍`,
         });
 
-      interaction.reply ({ embeds: [mayo] , ephemeral: false });
+      interaction.reply ({ embeds: [mayo] , ephemeral: true });
 
     },
   };
