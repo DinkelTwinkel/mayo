@@ -1,12 +1,17 @@
 // Require the necessary discord.js classes
 const fs = require('fs');
-const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField } = require('discord.js');
+const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField, Partials } = require('discord.js');
 const { token, mongourl } = require('./keys.json');
 require('log-timestamp');
 const lurkHour = 24 * 7;
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates], partials: [
+  Partials.Channel,
+  Partials.Message,
+  Partials.Reaction,
+  Partials.User,
+] });
 
 const mongoose = require('mongoose');
 
@@ -28,6 +33,7 @@ const Stock = require('./models/stock');
 const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
 const casinoController = require('./patterns/casinoController');
 const flowerBedController = require('./patterns/flowerBedController');
+const flowerBedReactionAward = require('./patterns/flowerBedReactionAward');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -40,6 +46,7 @@ client.once(Events.ClientReady, async c => {
 
   casinoController(client);
   flowerBedController(client);
+  flowerBedReactionAward(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
