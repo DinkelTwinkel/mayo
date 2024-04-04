@@ -45,7 +45,7 @@ module.exports = async (client) => {
 
                 thread.send ({content: '```' + `NEXT RACE STARTING IN: ${raceTime} MINS` + '```'});
             
-                setInterval(async () => {
+                setTimeout(async () => {
 
                     await thread.send ({content: `# RACE START!`});
                     await thread.send ({content: `${turtleRaceGif[Math.floor(Math.random() * turtleRaceGif.length)]}`});
