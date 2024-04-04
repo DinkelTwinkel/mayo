@@ -27,6 +27,7 @@ const sushiConveyor = require('./patterns/sushiConveyor');
 const Stock = require('./models/stock');
 const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
 const casinoController = require('./patterns/casinoController');
+const flowerBedController = require('./patterns/flowerBedController');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -38,6 +39,7 @@ client.once(Events.ClientReady, async c => {
   // });
 
   casinoController(client);
+  flowerBedController(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
