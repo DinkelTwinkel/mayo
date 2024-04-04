@@ -37,9 +37,11 @@ module.exports = async (client) => {
 
         const member = reaction.message.guild.members.cache.get(user.id);
         const thread = reaction.message.channel.threads.cache.find(x => x.id === reaction.message.id);
-        thread.send (`${member.displayName} planted a ${reaction.emoji.name}, ${messageAuthorMember.displayName} gained 10 Mayo!`);
+        thread.send (`${member.displayName} planted a ${reaction.emoji} in this flower bed!`);
 
         if (result) return console.log ('already reacted to this post before, reward cancelled.');
+
+        thread.send (`${messageAuthorMember.displayName} & ${member.displayName} gained 10 Mayo!`);
 
         const newReactionTracker = new ReactionLimit ({
           messageId: reaction.message.id,
@@ -54,10 +56,19 @@ module.exports = async (client) => {
             userId: messageAuthor.id,
           })
         }
-
-        console.log ('Not reacted to this post before, reward gained');
         userData.points += 10;
         await userData.save();
+
+        userData = await Point.findOne({ userId: member.id });
+        if (!userData) {
+          userData = new Point({
+            userId: member.id,
+          })
+        }
+        userData.points += 10;
+        await userData.save();
+
+        console.log ('Not reacted to this post before, reward gained');
       
       })
       
