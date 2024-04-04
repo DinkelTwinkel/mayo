@@ -264,6 +264,16 @@ client.on(Events.MessageCreate, async (message) => {
             return deleteMessage(message);
         }
       }
+
+      
+    function deleteMessage (message) {
+      try {
+        message.delete();
+      }
+      catch (err) {
+        console.log (err);
+      }
+    }
     }
 })
 
