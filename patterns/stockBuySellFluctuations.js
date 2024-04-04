@@ -88,9 +88,9 @@ module.exports = async (client) => {
         })
 
         const cost = stock.currentValue;
-        const checkPouch = await points.findOne ({userID: interaction.member.user.id});
-        if (checkPouch.money < cost) return interaction.followUp ({content: `You do not have enough mayo! You need ${cost} mayo to perform this action!`, ephemeral: true });
-        checkPouch.money -= cost;
+        const checkPouch = await points.findOne ({userId: interaction.member.user.id});
+        if (checkPouch.points < cost) return interaction.followUp ({content: `You do not have enough mayo! You need ${cost} mayo to perform this action!`, ephemeral: true });
+        checkPouch.points -= cost;
         await checkPouch.save();
 
         // successfully bought.
@@ -170,8 +170,8 @@ module.exports = async (client) => {
         stock.totalShares -= 1;
         await checkExistingInventory.save();
 
-        const checkPouch = await points.findOne ({userID: interaction.member.id});
-        checkPouch.money += stock.currentValue-tax;
+        const checkPouch = await points.findOne ({userId: interaction.member.id});
+        checkPouch.points += stock.currentValue-tax;
         await checkPouch.save();
 
         if (interaction.channel.id === '1171804720906641428') {
@@ -182,8 +182,8 @@ module.exports = async (client) => {
           interaction.followUp({content: `You sold ${stock.stockName} Stock for ${stock.currentValue} mayo and paid ${tax} mayo in transaction fee, you currently have ${checkExistingInventory.quantity} shares.`, ephemeral: true});
         }
 
-        // const jianDaoWallet = await points.findOne({ userID: '1202895682630066216' });
-        // jianDaoWallet.money += 1;
+        // const jianDaoWallet = await points.findOne({ userId: '1202895682630066216' });
+        // jianDaoWallet.points += 1;
         // await jianDaoWallet.save();
 
         //refChannel1.send (`${interaction.member.displayName} sold ${stock.stockName} Stock for ${stock.currentValue} sea mayo and paid 1 mayo in transaction fee, they currently have ${checkExistingInventory.quantity} shares.`);

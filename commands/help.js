@@ -58,6 +58,11 @@ module.exports = {
             inline: false
           },
           {
+            name: "**!stocks**",
+            value: "```get access to the stock channel!```",
+            inline: false
+          },
+          {
             name: "**/leaderboard**",
             value: "```who should I rob?```",
             inline: false
@@ -65,6 +70,11 @@ module.exports = {
           {
             name: "**/blackmayo**",
             value: "```send death threats anonymously!```",
+            inline: false
+          },
+          {
+            name: "**/dailymayo**",
+            value: "```write daily mayo! Mayo are randomly shown in /mayo```",
             inline: false
           },
         )
