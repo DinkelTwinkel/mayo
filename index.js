@@ -34,6 +34,7 @@ const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
 const casinoController = require('./patterns/casinoController');
 const flowerBedController = require('./patterns/flowerBedController');
 const flowerBedReactionAward = require('./patterns/flowerBedReactionAward');
+const shopController = require('./patterns/shopController');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -47,6 +48,7 @@ client.once(Events.ClientReady, async c => {
   casinoController(client);
   flowerBedController(client);
   flowerBedReactionAward(client);
+  shopController(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
@@ -67,7 +69,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
