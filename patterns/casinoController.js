@@ -82,10 +82,8 @@ module.exports = async (client) => {
             });
         }
         
-    }, 5000);
-
+    }, 10000);
     
-
     client.on(Events.MessageCreate, async (message) => {
 
         if (message.guild.id != '1171795345223716964') return;
