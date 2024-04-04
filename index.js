@@ -257,39 +257,39 @@ client.on(Events.MessageCreate, async (message) => {
         });
       } 
 
-      if (command === 'stocks') {
+      // if (command === 'stocks') {
 
-        const kimoServer =  await client.guilds.fetch('1171795345223716964');
-        //await kimoServer.members.fetch();
-        const therapyRole = kimoServer.roles.cache.get('1225494350532968519');
-        const member = kimoServer.members.cache.get(message.member.user.id);
+      //   const kimoServer =  await client.guilds.fetch('1171795345223716964');
+      //   //await kimoServer.members.fetch();
+      //   const therapyRole = kimoServer.roles.cache.get('1225494350532968519');
+      //   const member = kimoServer.members.cache.get(message.member.user.id);
 
-        if (member.roles.cache.has(therapyRole.id)) {
-            member.roles.remove(therapyRole);
-            return deleteMessage(message);
-        }
-        else {
-            member.roles.add(therapyRole);
-            return deleteMessage(message);
-        }
-      }
+      //   if (member.roles.cache.has(therapyRole.id)) {
+      //       member.roles.remove(therapyRole);
+      //       return deleteMessage(message);
+      //   }
+      //   else {
+      //       member.roles.add(therapyRole);
+      //       return deleteMessage(message);
+      //   }
+      // }
 
-      if (command === '!spam') {
+      // if (command === '!spam') {
 
-        const kimoServer =  await client.guilds.fetch('1171795345223716964');
-        //await kimoServer.members.fetch();
-        const therapyRole = kimoServer.roles.cache.get('1225518821175988367');
-        const member = kimoServer.members.cache.get(message.member.user.id);
+      //   const kimoServer =  await client.guilds.fetch('1171795345223716964');
+      //   //await kimoServer.members.fetch();
+      //   const therapyRole = kimoServer.roles.cache.get('1225518821175988367');
+      //   const member = kimoServer.members.cache.get(message.member.user.id);
 
-        if (member.roles.cache.has(therapyRole.id)) {
-            member.roles.remove(therapyRole);
-            return deleteMessage(message);
-        }
-        else {
-            member.roles.add(therapyRole);
-            return deleteMessage(message);
-        }
-      }
+      //   if (member.roles.cache.has(therapyRole.id)) {
+      //       member.roles.remove(therapyRole);
+      //       return deleteMessage(message);
+      //   }
+      //   else {
+      //       member.roles.add(therapyRole);
+      //       return deleteMessage(message);
+      //   }
+      // }
 
       
     function deleteMessage (message) {

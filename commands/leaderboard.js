@@ -4,7 +4,7 @@ const Point = require('../models/points');
 module.exports = {
     data: new SlashCommandBuilder()
     .setName('leaderboard')
-    .setDescription('who has the most VBUCKS?'),
+    .setDescription('who has the most MAYO?'),
 
     async execute(interaction, client) {
 
@@ -19,7 +19,7 @@ module.exports = {
 
       const embed = new EmbedBuilder()
       .setTitle(' LEADERBOARD: TOP 25 ')
-      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▬▶ ${players[0].points} VBUCKS\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
+      .setDescription(`# 👑『 FIRST PLACE 』 ${firstPlaceName}\n  # ▬▶ ${players[0].points} MAYONAISE\n ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡ ⟡`)
       .setThumbnail(firstPlace.user.displayAvatarURL({ format: 'png', dynamic: true, size: 1024 }))
       .setColor("#f5f3b8")
 
@@ -27,15 +27,15 @@ module.exports = {
 
         // console.log(players[index])
 
-        const player = await client.guilds.cache.get('1171795345223716964').members.fetch(players[index].userId);
+        // const player = await client.guilds.cache.get('1171795345223716964').members.fetch(players[index].userId);
 
-          let username = player.nickname;
-          if (!player.nickname) 
-          username = player.user.username;
+        //   let username = player.nickname;
+        //   if (!player.nickname) 
+        //   username = player.user.username;
   
           embed.addFields({
-            name: `『${index + 1}』${username}`,
-            value: `-▶ ${players[index].points.toString()} VBUCKS`,
+            name: `\n`,
+            value: `『${index + 1}』<@${players[index].userId}>\n-▶ ${players[index].points.toString()} MAYO`,
             inline: true
           })
   
