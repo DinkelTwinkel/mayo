@@ -13,7 +13,7 @@ module.exports = {
       const players = await Point.find().sort({ points: -1 });
       const firstPlace = await client.guilds.cache.get('1171795345223716964').members.fetch(players[0].userId);
 
-      let firstPlaceName = firstPlace.nickname;
+      let firstPlaceName = firstPlace.displayName;
       if (!firstPlace.nickname) 
       firstPlaceName = firstPlace.user.username;
 

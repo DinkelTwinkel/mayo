@@ -229,6 +229,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
     newState.member.voice.disconnect();
     console.log(`User ${newState.member.user.tag} joined a voice channel and was immediately disconnected.`);
+    await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has RESURRECTED`);
 
   }
 });
