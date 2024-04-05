@@ -27,7 +27,7 @@ module.exports = {
 
         const message = interaction.options.getString ('message');
 
-        const reply = interaction.editReply(`ASK: ${message}`);
+        const reply = await interaction.editReply(`ASK: ${message}`);
 
         const dialogueArray = [
         'Yes', 
@@ -42,7 +42,7 @@ module.exports = {
 
         const originalString = dialogueArray[rIndex];
 
-        reply.reply (originalString);
+        interaction.followUp (originalString);
 
     },
   };
