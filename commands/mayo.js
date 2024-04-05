@@ -13,6 +13,7 @@ module.exports = {
       // ephemeral tell user points
 
       // generate daily fortune:
+      await interaction.deferReply();
 
       let userFortune = await Fortune.findOne ({ userId: interaction.member.id });
 
@@ -64,7 +65,7 @@ module.exports = {
           text: `To Gain Mayo, Simply Talk! /help to see mayo commands!`,
         });
 
-      interaction.reply ({ embeds: [mayo] });
+      interaction.editReply ({ embeds: [mayo] });
 
     },
   };
