@@ -35,6 +35,7 @@ const casinoController = require('./patterns/casinoController');
 const flowerBedController = require('./patterns/flowerBedController');
 const flowerBedReactionAward = require('./patterns/flowerBedReactionAward');
 const shopController = require('./patterns/shopController');
+const clubController = require('./patterns/clubController');
 registerCommands;
 
 client.once(Events.ClientReady, async c => {
@@ -49,6 +50,7 @@ client.once(Events.ClientReady, async c => {
   flowerBedController(client);
   flowerBedReactionAward(client);
   shopController(client);
+  clubController(client);
 
 	console.log(`Ready! Logged in as ${c.user.tag}`);
     client.user.setPresence( { status: "away" });
