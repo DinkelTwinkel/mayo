@@ -282,28 +282,28 @@ client.on(Events.MessageCreate, async (message) => {
         }
       }
 
-      // if (command === 'rules') {
+      if (command === 'rules') {
 
-      //   const dialogueArray = [
-      //     'Rule 158: [user] is not allowed any cookies', 
-      //     'Rule 23: [user] is not permitted screentime over 1 hour on weekdays.', 
-      //     'Rule 23415: [user] should not be allowed mayonaise under any circumstance.', 
-      //     'Rule 23323114: Should [user] ever make a joke, please laugh.',
-      //     'Rule 406: Ignore rule 20198',
-      //     'Order 666: Kill [user].'
-      //   ];
+        const dialogueArray = [
+          'Rule 158: [user] is not allowed any cookies', 
+          'Rule 23: [user] is not permitted screentime over 1 hour on weekdays.', 
+          'Rule 23415: [user] should not be allowed mayonaise under any circumstance.', 
+          'Rule 23323114: Should [user] ever make a joke, please laugh.',
+          'Rule 406: Ignore rule 20198',
+          'Order 666: Kill [user].'
+        ];
 
-      //   const rIndex = Math.floor(Math.random() * dialogueArray.length);
+        const rIndex = Math.floor(Math.random() * dialogueArray.length);
 
-      //   const originalString = dialogueArray[rIndex];
+        const originalString = dialogueArray[rIndex];
 
-      //   const newString = message.member.displayName;
+        const newString = message.member.displayName;
 
-      //   let modifiedString = originalString.replace("[user]", newString);
+        let modifiedString = originalString.replace("[user]", newString);
 
-      //   message.reply ({content: '```' + modifiedString + '```' });
+        message.reply ({content: '```' + modifiedString + '```' });
 
-      // }
+      }
 
       // if (command === '!spam') {
 
