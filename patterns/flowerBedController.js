@@ -12,11 +12,6 @@ module.exports = async (client) => {
             if (attachmentTest(message) != null) {
                 const flowerArray = ['🌷','🌸','🌹','🌺','🌼','🥀','💐','🌻']
                 const randomFlower = flowerArray[Math.floor(Math.random() * flowerArray.length)];
-                await message.react(randomFlower);
-                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
-                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
-                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
-                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
                 
                 let threadName = randomFlower + message.content;
                 if (!message.content) {
@@ -31,6 +26,12 @@ module.exports = async (client) => {
                     // flags: ThreadFlags.FLAGS.CREATED_FROM_MESSAGE,
                   });
                 // create a thread.
+
+                await message.react(randomFlower);
+                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
+                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
+                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
+                message.react(flowerArray[Math.floor(Math.random() * flowerArray.length)]);
             }
             
         }

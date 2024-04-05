@@ -3,8 +3,8 @@ const Point = require('../models/points');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('dailymayo')
-    .setDescription('put a message in a mayo! (Costs 50 shells)')
+    .setName('rules')
+    .setDescription('mayo will tell you what to do.')
     .addStringOption(option =>
         option
             .setName('message')
