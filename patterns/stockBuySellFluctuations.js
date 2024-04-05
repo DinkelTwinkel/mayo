@@ -359,7 +359,7 @@ async function createStockMarket(client) {
         const refChannel1 = kimoServer.channels.cache.get('1171804720906641428');
         const messages = await refChannel1.messages.fetch();
         messages.forEach(message => {
-          if (message.content === '**KIMO STOCK MARKET**') {
+          if (message.content === '**MAYO STOCK MARKET**') {
             try {
               message.delete();
             }
@@ -448,6 +448,6 @@ async function createStockMarket(client) {
         const embed = new EmbedBuilder()
         .setDescription("```\nEvery stock has a total number of shares currently on the market.\nThe more shares you hold, the bigger impact your buy/sell has on the price.\nWhen you sell, there is a transaction fee. This is just a fee to negate the price change from you buying then selling. So buy and sell repeatedly result in a net 0 gain. This fee is based on (Your shares/total owned shares)\n\nStock prices go up/down when people sell/buy.\nStock prices also go up/down at random intervals just like before. Every stock has their own unique characteristics. Some move faster, some move slower. Some are stable but may have massive dips. It's all procedural.\nExcept all rises and decreases are hidden so you can't tell whether it's natural or a player doing it.\n\nThe fewer shares owned on a stock the faster it changes. The more people owning a stock the less it changes.\nIf you sell a stock after someone bought into it, you will make a profit. \n\nGood luck & don't invest more than you're willing to lose.\n```\nuse **/stocks** to see your current portfolio & profits.");
 
-        refChannel1.send ({ content: '**KIMO STOCK MARKET**', components: actionRowArray , ephemeral: false, embeds: [embed] })
+        refChannel1.send ({ content: '**MAYO STOCK MARKET**', components: actionRowArray , ephemeral: false, embeds: [embed] })
 
 }
