@@ -339,8 +339,8 @@ async function shiftStock (client) {
 
 async function getStockName(client) {
 
-  const backRooms = await client.guilds.cache.get('1063167135939039262');
-  const cookieChannel = await backRooms.channels.cache.get('1206589106751148092');
+  const backRooms = await client.guilds.cache.get('1103779676406693981');
+  const cookieChannel = await backRooms.channels.cache.get('1173936658169745478');
 
   const messages = await getAllMessagesInChannel(cookieChannel);
 
