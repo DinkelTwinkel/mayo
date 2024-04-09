@@ -71,7 +71,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
@@ -233,7 +233,7 @@ client.on(Events.VoiceStateUpdate, async (oldState, newState) => {
 
     newState.member.voice.disconnect();
     console.log(`User ${newState.member.user.tag} joined a voice channel and was immediately disconnected.`);
-    await oldState.guild.channels.cache.get('1171795345697669142').send(`<@${newState.member.userId}> has RESURRECTED 🌻`);
+    await oldState.guild.channels.cache.get('1171795345697669142').send(`<@${newState.member.user.id}> has RESURRECTED 🌻`);
 
   }
 });
