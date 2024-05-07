@@ -71,7 +71,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
@@ -124,7 +124,7 @@ client.once(Events.ClientReady, async c => {
           // turn user into a ghost.
           if (friendshipGuild.members.cache.get(r.userId)) {
             friendshipGuild.members.cache.get(r.userId).roles.set(['1172197535922798644']).catch((err) => {});
-            await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has become a ghooooooooooooooooooost 👻`);
+            //await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has become a ghooooooooooooooooooost 👻`);
           }
           // const deletCustomColour = await Colour.findOne({ userId: r.userId });
           // if (deletCustomColour) {
