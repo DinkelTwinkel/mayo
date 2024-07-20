@@ -23,6 +23,7 @@ const mongoose = require('mongoose');
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
 
 const registerCommands = require ('./registerCommands');
+const registerCommandsGlobal = require ('./registerCommandGlobal');
 const Banner = require('./models/bannerimages');
 const Point = require('./models/points');
 const Colour = require('./models/customColour');
@@ -37,6 +38,7 @@ const flowerBedReactionAward = require('./patterns/flowerBedReactionAward');
 const shopController = require('./patterns/shopController');
 const clubController = require('./patterns/clubController');
 registerCommands;
+registerCommandsGlobal;
 
 client.once(Events.ClientReady, async c => {
 
