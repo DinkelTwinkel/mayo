@@ -3,7 +3,7 @@ const fs = require('fs');
 const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField, Partials } = require('discord.js');
 const { token, mongourl } = require('./keys.json');
 require('log-timestamp');
-const lurkHour = 24 * 7;
+const lurkHour = 24 * 30;
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildVoiceStates], partials: [
@@ -155,7 +155,7 @@ client.once(Events.ClientReady, async c => {
     
     // mayo-ed role cleanup
     members.forEach((member) => {
-      if (member.roles.cache.get('1172041699783098452')) member.roles.remove ('1172041699783098452');
+      if (member.roles.cache.get('1172041699783098452')) member.roles.add ('1172041699783098452');
     })
 
     // sushiConveyer 
