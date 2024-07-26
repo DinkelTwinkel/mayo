@@ -1,6 +1,6 @@
 // Require the necessary discord.js classes
 const fs = require('fs');
-const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField, Partials } = require('discord.js');
+const { Client, Events, GatewayIntentBits, ActivityType, PermissionsBitField, Partials, MessageActivityType } = require('discord.js');
 const { token, mongourl } = require('./keys.json');
 require('log-timestamp');
 const lurkHour = 24 * 30;
@@ -365,6 +365,18 @@ client.on(Events.MessageCreate, async (message) => {
   }
   userPouch.points += 1;
   await userPouch.save();
+
+
+  if (message.author.bot) return;
+
+  if (message.channel.id === '1266428316743766160') {
+    await message.guild.channels.cache.get('1224558961915854870').send('```whisper: ' + message.content + '```');
+    await message.delete();
+  }
+
+  if (message.channel.id === '1224558961915854870') {
+    await message.guild.channels.cache.get('1266428316743766160').send('```whisper: ' + message.content + '```');
+  }
 
 });
 
