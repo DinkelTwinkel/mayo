@@ -187,8 +187,10 @@ async function setRandomImage(friendshipGuild) {
 client.on(Events.GuildMemberAdd, async (member) => {
 
   member.roles.add('1171797289581424661')
-  member.guild.systemChannel.send(`Hello ${member}, I am MAY-O, to become mayo try **/mayo**`);
 
+  if (member.guild.id === '1171795345223716964') {
+    member.guild.systemChannel.send(`Hello ${member}, I am MAY-O, to become mayo try **/mayo**`);
+  }
   // lurker checker 
   const now = new Date();
   // Add 24 hours to the current date and time
