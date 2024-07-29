@@ -179,11 +179,11 @@ client.once(Events.ClientReady, async c => {
     // .catch(console.error);
     const sushiChannel2 = brightonGuild.channels.cache.get('1267271846248579123');
 
-    sushiChannel2.setName (await oceanConveyor(sushiChannel.name));
+    sushiChannel2.setName (await oceanConveyor(sushiChannel2.name));
 
     setInterval(async () => {
 
-      sushiChannel2.setName (await oceanConveyor(sushiChannel.name));
+      sushiChannel2.setName (await oceanConveyor(sushiChannel2.name));
       
     }, 1000 * 60 * 5);
 
