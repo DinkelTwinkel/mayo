@@ -27,9 +27,8 @@ module.exports = async (client) => {
 
   client.on(Events.MessageCreate, async (message) => {
 
-    console.log ('new message detected');
-
     if (message.member.user.bot) return;
+    console.log ('new message detected');
 
     if (message.channel.id != '1171804720906641428') return;
 

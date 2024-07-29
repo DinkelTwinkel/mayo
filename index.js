@@ -30,6 +30,7 @@ const Colour = require('./models/customColour');
 const Fortune = require('./models/dailyFortune');
 const Lurker = require('./models/lurker');
 const sushiConveyor = require('./patterns/sushiConveyor');
+const oceanConveyor = require('./patterns/oceanConveyor');
 const Stock = require('./models/stock');
 const stockBuySellFluctuations = require('./patterns/stockBuySellFluctuations');
 const casinoController = require('./patterns/casinoController');
@@ -168,6 +169,19 @@ client.once(Events.ClientReady, async c => {
       sushiChannel.setName (await sushiConveyor(sushiChannel.name));
       
     }, 1000 * 60 * 5);
+
+    const brightonGuild = await client.guilds.fetch('1247305203653546096');
+    const sushiChannel2 = brightonGuild.channels.cache.get('1267271846248579123');
+
+    sushiChannel2.setName (await oceanConveyor(sushiChannel.name));
+
+    setInterval(async () => {
+
+      sushiChannel2.setName (await oceanConveyor(sushiChannel.name));
+      
+    }, 1000 * 60 * 5);
+
+    
 });
 
 async function setRandomImage(friendshipGuild) {

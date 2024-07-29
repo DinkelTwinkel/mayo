@@ -18,7 +18,7 @@ module.exports = {
 
     async execute(interaction, client) {
 
-      if (interaction.options.getUser('target').id === interaction.member.user.id) return interaction.reply ('You cannot give mayo to yourself!');
+      if (interaction.options.getUser('target').id === interaction.member.user.id) return interaction.reply ({ content: 'You cannot give mayo to yourself!', ephemeral: true });
 
       // ephemeral tell user points
 
