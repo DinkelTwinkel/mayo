@@ -171,6 +171,12 @@ client.once(Events.ClientReady, async c => {
     }, 1000 * 60 * 5);
 
     const brightonGuild = await client.guilds.fetch('1247305203653546096');
+    // brightonGuild.systemChannel.messages.fetch({ limit: 1 })
+    // .then(messages => {
+    //     // Delete all fetched messages
+    //     brightonGuild.systemChannel.bulkDelete(messages);
+    // })
+    // .catch(console.error);
     const sushiChannel2 = brightonGuild.channels.cache.get('1267271846248579123');
 
     sushiChannel2.setName (await oceanConveyor(sushiChannel.name));
