@@ -52,7 +52,7 @@ function limitString(str, maxLength) {
 }
 
 function attachmentTest(message) {
-    const imageExtensions = /\.(png|jpeg|jpg|jpg|webp|gif)/i;
+    const imageExtensions = /\.(png|jpeg|jpg|jpg|webp|gif|mp4|MOV|HEVC)/i;
 
     if (message.attachments.size > 0) {
         const attachment = message.attachments.first(); // Get the first attachment (usually the most recent one)
