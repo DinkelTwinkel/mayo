@@ -52,7 +52,7 @@ function limitString(str, maxLength) {
 }
 
 function attachmentTest(message) {
-    const imageExtensions = /\.(png|jpeg|jpg|jpg|webp|gif|mp4|MOV|HEVC)/i;
+    const imageExtensions = /\.(png|jpeg|jpg|jpg|webp|gif|mp4|MOV|HEVCs)/i;
 
     if (message.attachments.size > 0) {
         const attachment = message.attachments.first(); // Get the first attachment (usually the most recent one)
@@ -71,7 +71,7 @@ function attachmentTest(message) {
     }
     else if (message.content.startsWith('https://cdn.discordapp.com/attachments/')) {
 
-        if () {
+        if (imageExtensions.test(message.content)) {
             console.log('Valid image attachment found. Link CDN Edition');
             return message.content;
 
