@@ -71,7 +71,7 @@ function attachmentTest(message) {
     }
     else if (message.content.startsWith('https://cdn.discordapp.com/attachments/')) {
 
-        if (imageExtensions.test(message.content)) {
+        if () {
             console.log('Valid image attachment found. Link CDN Edition');
             return message.content;
 
