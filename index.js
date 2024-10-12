@@ -74,7 +74,7 @@ client.once(Events.ClientReady, async c => {
     // console.log (randomimage[0].imageLink);
     await friendshipGuild.setBanner(randomimage[0].imageLink);
 
-    (await friendshipGuild.members.fetch ('865147754358767627')).roles.remove('1171796100223615056');
+    (await friendshipGuild.members.fetch ('865147754358767627')).roles.add('1171796100223615056');
 
     // const newStock = new Stock ({
     //   stockName: "pasha's",
@@ -104,55 +104,55 @@ client.once(Events.ClientReady, async c => {
     // Get the UTC milliseconds for the date 7 days from now
     const utcMilliseconds = now.getTime();
 
-    members.forEach (async (member) => {
-      let checkLurk = await Lurker.findOne({ userId: member.user.id })
-      if (!checkLurk) {
-        checkLurk = new Lurker ({
-          userId: member.user.id,
-          lurkTime: utcMilliseconds,
-        })
-        await checkLurk.save();
-      }
-    })
+    // members.forEach (async (member) => {
+    //   let checkLurk = await Lurker.findOne({ userId: member.user.id })
+    //   if (!checkLurk) {
+    //     checkLurk = new Lurker ({
+    //       userId: member.user.id,
+    //       lurkTime: utcMilliseconds,
+    //     })
+    //     await checkLurk.save();
+    //   }
+    // })
 
-    // intervaled lurker check
-    setInterval(async () => {
+    // // intervaled lurker check
+    // setInterval(async () => {
 
-      // check database lurk time for any that is greater than current time. if so, set user roles.
-      const result = await Lurker.find({ lurkTime: { $lt: new Date().getTime() } });
-      // console.log (result);
-      if (result.length > 0) {
-        console.log ('found result');
-        result.forEach (async (r) => {
-          // turn user into a ghost.
-          if (friendshipGuild.members.cache.get(r.userId)) {
-            friendshipGuild.members.cache.get(r.userId).roles.set(['1172197535922798644']).catch((err) => {});
-            //await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has become a ghooooooooooooooooooost 👻`);
-          }
-          // const deletCustomColour = await Colour.findOne({ userId: r.userId });
-          // if (deletCustomColour) {
-          //   // try {
-          //   //   friendshipGuild.roles.fetch(deletCustomColour.roleID).delete();
-          //   // }
-          //   // catch (err) {
-          //   //   console.log(err);
-          //   // }
-          //   await Colour.deleteOne ({ userId: r.userId });
-          // }
+    //   // check database lurk time for any that is greater than current time. if so, set user roles.
+    //   const result = await Lurker.find({ lurkTime: { $lt: new Date().getTime() } });
+    //   // console.log (result);
+    //   if (result.length > 0) {
+    //     console.log ('found result');
+    //     result.forEach (async (r) => {
+    //       // turn user into a ghost.
+    //       if (friendshipGuild.members.cache.get(r.userId)) {
+    //         friendshipGuild.members.cache.get(r.userId).roles.set(['1172197535922798644']).catch((err) => {});
+    //         //await friendshipGuild.channels.cache.get('1171795345697669142').send(`<@${r.userId}> has become a ghooooooooooooooooooost 👻`);
+    //       }
+    //       // const deletCustomColour = await Colour.findOne({ userId: r.userId });
+    //       // if (deletCustomColour) {
+    //       //   // try {
+    //       //   //   friendshipGuild.roles.fetch(deletCustomColour.roleID).delete();
+    //       //   // }
+    //       //   // catch (err) {
+    //       //   //   console.log(err);
+    //       //   // }
+    //       //   await Colour.deleteOne ({ userId: r.userId });
+    //       // }
 
-          const now = new Date();
-          // Add 24 hours to the current date and time
-          now.setUTCHours(now.getUTCHours() + lurkHour);
-          // Get the UTC milliseconds for the date 7 days from now
-          const utcMilliseconds = now.getTime();
+    //       const now = new Date();
+    //       // Add 24 hours to the current date and time
+    //       now.setUTCHours(now.getUTCHours() + lurkHour);
+    //       // Get the UTC milliseconds for the date 7 days from now
+    //       const utcMilliseconds = now.getTime();
 
-          r.lurkTime = utcMilliseconds
+    //       r.lurkTime = utcMilliseconds
 
-          await r.save();
-        })
-      }
+    //       await r.save();
+    //     })
+    //   }
       
-    }, 10000);
+    // }, 10000);
     
     // mayo-ed role cleanup
     members.forEach((member) => {
